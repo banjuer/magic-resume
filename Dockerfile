@@ -19,6 +19,10 @@ RUN if [ -n "$NPM_REGISTRY_MIRROR" ]; then \
       npm config set registry "${NPM_REGISTRY_MIRROR}"; \
     fi
 
+# corepack 也需从镜像下载 pnpm（不配置则为空，走默认源）
+# corepack also needs mirror to download pnpm (empty = use default)
+ENV COREPACK_NPM_REGISTRY=$NPM_REGISTRY_MIRROR
+
 RUN npm install -g corepack@latest && corepack enable
 WORKDIR /app
 
