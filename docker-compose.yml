@@ -4,6 +4,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - ALPINE_MIRROR=${ALPINE_MIRROR:-}
+        - NPM_REGISTRY_MIRROR=${NPM_REGISTRY_MIRROR:-}
+        - PNPM_REGISTRY_MIRROR=${PNPM_REGISTRY_MIRROR:-}
     ports:
       - "3000:3000"
     environment:
